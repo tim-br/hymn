@@ -1,0 +1,28 @@
+cabal-version:       2.2
+
+name:                hymn
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/hymn#readme
+license:             BSD-3-Clause
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2025 Author name here
+category:            Music
+build-type:          Simple
+extra-source-files:  README.md
+                     CHANGELOG.md
+
+executable hymn
+  hs-source-dirs:      app
+  main-is:             Hymn/Main.hs
+  other-modules:       Hymn.CLI
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , hymn-core
+                     , hymn-xml
+                     , optparse-applicative
+                     , text
+  ghc-options:         -Wall

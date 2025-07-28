@@ -1,0 +1,19 @@
+cabal-version:       2.2
+
+name:                hymn-core
+version:             0.1.0.0
+license:             BSD-3-Clause
+license-file:        ../LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2025 Author name here
+category:            Music
+build-type:          Simple
+extra-source-files:  ../README.md
+
+library
+  exposed-modules:     Hymn.Types
+  hs-source-dirs:      src
+  build-depends:       base >= 4.7 && < 5
+                     , text
+  default-language:    Haskell2010
