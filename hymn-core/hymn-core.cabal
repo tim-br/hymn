@@ -12,7 +12,7 @@ build-type:          Simple
 extra-source-files:  ../README.md
 
 library
-  exposed-modules:     Hymn.Types
+  exposed-modules:     Hymn.Types, Hymn.Theory
   hs-source-dirs:      src
   build-depends:       base >= 4.7 && < 5
                      , text

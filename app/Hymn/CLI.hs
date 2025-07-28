@@ -1,8 +1,10 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Hymn.CLI where
 
 import Options.Applicative
 import Hymn.Render (writeMusicXML)
 import Hymn.Types
+import Hymn.Theory (generateMajorScale)
 
 runCLI :: IO ()
 runCLI = execParser opts >>= handleCommand
@@ -23,9 +25,11 @@ commands = subparser
 handleCommand :: Command -> IO ()
 handleCommand Version  = putStrLn "hymn v0.1.0"
 handleCommand Generate = do
-  let exampleNote = Note (Just (Pitch C Nothing 4)) 1 1 (Just Quarter) Nothing False False False
-      exampleMeasure = Measure 1 Nothing [MNote exampleNote]
+  let attributes = Attributes 4 (Just (Key 0 Nothing)) (Just (TimeSig 4 4)) (Just (Clef "G" 2))
+      scaleNotes = generateMajorScale D 4
+      noteEvents = map MNote scaleNotes
+      exampleMeasure = Measure 1 (Just attributes) noteEvents
       examplePart = Part "P1" [exampleMeasure]
-      exampleScore = ScorePartwise "3.1" [ScorePart "P1" "Example Part"] [examplePart]
-  writeMusicXML "output.musicxml" exampleScore
-  putStrLn "Wrote output.musicxml"
+      exampleScore = ScorePartwise "3.1" [ScorePart "P1" "C Major Scale"] [examplePart]
+  writeMusicXML "scale.musicxml" exampleScore
+  putStrLn "Wrote C Major scale to scale.musicxml"

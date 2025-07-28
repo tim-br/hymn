@@ -70,9 +70,16 @@ instance Show NoteType where
   show Sixteenth = "16th"
   show ThirtySecond = "32nd"
 
--- Accidental Markings
+-- Accidental Markings - removed deriving (Show)
 data Accidental = DoubleFlat | Flat | Natural | Sharp | DoubleSharp
-  deriving (Show)
+
+-- Custom Show instance for MusicXML output
+instance Show Accidental where
+  show DoubleFlat = "double-flat"
+  show Flat = "flat"
+  show Natural = "natural"
+  show Sharp = "sharp"
+  show DoubleSharp = "double-sharp"
 
 -- Direction (text, dynamics, etc.)
 data Direction = Direction
