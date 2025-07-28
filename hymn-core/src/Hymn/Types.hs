@@ -53,10 +53,10 @@ data Pitch = Pitch
   { step :: PitchStep
   , alter :: Maybe Int
   , octave :: Int
-  } deriving (Show)
+  } deriving (Show, Eq)
 
 data PitchStep = A | B | C | D | E | F | G
-  deriving (Show)
+  deriving (Show, Eq)
 
 -- Note Types (duration names) - removed deriving (Show)
 data NoteType = Whole | Half | Quarter | Eighth | Sixteenth | ThirtySecond

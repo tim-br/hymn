@@ -26,10 +26,10 @@ handleCommand :: Command -> IO ()
 handleCommand Version  = putStrLn "hymn v0.1.0"
 handleCommand Generate = do
   let attributes = Attributes 4 (Just (Key 0 Nothing)) (Just (TimeSig 4 4)) (Just (Clef "G" 2))
-      scaleNotes = generateMajorScale D 4
+      scaleNotes = generateMajorScale E 4
       noteEvents = map MNote scaleNotes
       exampleMeasure = Measure 1 (Just attributes) noteEvents
       examplePart = Part "P1" [exampleMeasure]
-      exampleScore = ScorePartwise "3.1" [ScorePart "P1" "C Major Scale"] [examplePart]
+      exampleScore = ScorePartwise "3.1" [ScorePart "P1" "D Major Scale"] [examplePart]
   writeMusicXML "scale.musicxml" exampleScore
-  putStrLn "Wrote C Major scale to scale.musicxml"
+  putStrLn "Wrote E Major scale to scale.musicxml"
