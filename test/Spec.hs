@@ -7,6 +7,11 @@ import Hymn.Types
 import Hymn.Theory
 import Hymn.Render
 
+-- Import the test modules directly
+import qualified Properties
+import qualified Integration
+import qualified Golden
+
 main :: IO ()
 main = hspec $ do
   describe "Music Theory Tests" $ do
@@ -53,3 +58,15 @@ main = hspec $ do
       xmlString `shouldSatisfy` ("<step>C</step>" `isInfixOf`)
       xmlString `shouldSatisfy` ("<octave>4</octave>" `isInfixOf`)
       xmlString `shouldSatisfy` ("<type>quarter</type>" `isInfixOf`)
+
+  describe "Property Tests" $ do
+    it "runs property-based tests" $ do
+      Properties.runProperties
+
+  describe "Integration Tests" $ do
+    it "tests all scales generation" $ do
+      Integration.testAllScales
+
+  describe "Golden File Tests" $ do
+    it "runs golden file tests" $ do
+      Golden.testGolden

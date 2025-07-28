@@ -28,14 +28,12 @@ renderPart part =
 
 renderMeasure :: Measure -> XML
 renderMeasure (Measure measureNumber attributes events) = 
-    trace (" renderMeasure called with: ") $
   elementA "measure" [("number", T.pack $ show measureNumber)] $ do
     maybe (pure ()) renderAttributes attributes
     mapM_ renderEvent events
 
 renderAttributes :: Attributes -> XML
 renderAttributes attrs@(Attributes divisions key time clef) = 
-  trace ("renderAttributes called with: " ++ show attrs) $
   element "attributes" $ do
     element "divisions" $ content (T.pack $ show divisions)
     maybe (pure ()) renderKey key
